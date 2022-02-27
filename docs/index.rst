@@ -2,8 +2,14 @@
 Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning
 ===============================================================================================
 
-|Website shields.io| |Documentation Status| |License| |OpenReview| |Python 3.6| |Pytorch| |Made withJupyter| 
+|Website shields.io| |Documentation Status| |License| |OpenReview| |Python 3.6| |Pytorch| 
 
+|Made withJupyter| 
+
+.. |Website shields.io| image:: https://img.shields.io/website-up-down-green-red/http/shields.io.svg
+   :target: https://modalitygap.readthedocs.io/
+.. |Documentation Status| image:: https://readthedocs.org/projects/modalitygap/badge/?version=latest
+   :target: http://modalitygap.readthedocs.io/?badge=latest
 .. |License| image:: https://img.shields.io/badge/License-MIT-blue.svg
    :target: https://lbesson.mit-license.org/
 .. |OpenReview| image:: https://img.shields.io/badge/OpenReview-MTex8qKavoS-green.svg
@@ -14,10 +20,6 @@ Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Represen
    :target: https://pytorch.org/
 .. |Made withJupyter| image:: https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter
    :target: https://jupyter.org/try
-.. |Website shields.io| image:: https://img.shields.io/website-up-down-green-red/http/shields.io.svg
-   :target: https://modalitygap.readthedocs.io/
-.. |Documentation Status| image:: https://readthedocs.org/projects/modalitygap/badge/?version=latest
-   :target: http://modalitygap.readthedocs.io/?badge=latest
 
 Welcome! This is the project website of our paper: `Mind the Gap:
 Understanding the Modality Gap in Multi-modal Contrastive Representation
