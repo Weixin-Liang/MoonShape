@@ -2,32 +2,28 @@
 Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning
 ===============================================================================================
 
-|License| |OpenReview| |Python 3.6| |Pytorch|
+|Website shields.io| |Documentation Status| |License| |OpenReview| |Python 3.6| |Pytorch| |Made withJupyter| 
 
-
-.. |License| image:: https://img.shields.io/badge/license-MIT-blue.svg
-   :target: https://en.wikipedia.org/wiki/MIT_License
-.. |OpenReview| image:: https://img.shields.io/badge/OpenReview-rRMlg4sZQ15.svg
-   :target: https://openreview.net/forum?id=rRMlg4sZQ15
+.. |License| image:: https://img.shields.io/badge/License-MIT-blue.svg
+   :target: https://lbesson.mit-license.org/
+.. |OpenReview| image:: https://img.shields.io/badge/OpenReview-MTex8qKavoS-green.svg
+   :target: https://openreview.net/forum?id=MTex8qKavoS
 .. |Python 3.6| image:: https://img.shields.io/badge/python-3.6-blue.svg
    :target: https://www.python.org/downloads/release/python-360/
 .. |Pytorch| image:: https://img.shields.io/badge/Pytorch-1.8-red.svg
    :target: https://pytorch.org/
-
+.. |Made withJupyter| image:: https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter
+   :target: https://jupyter.org/try
+.. |Website shields.io| image:: https://img.shields.io/website-up-down-green-red/http/shields.io.svg
+   :target: https://modalitygap.readthedocs.io/
+.. |Documentation Status| image:: https://readthedocs.org/projects/modalitygap/badge/?version=latest
+   :target: http://modalitygap.readthedocs.io/?badge=latest
 
 Welcome! This is the project website of our paper: `Mind the Gap:
 Understanding the Modality Gap in Multi-modal Contrastive Representation
 Learning <https://openreview.net/forum?id=rRMlg4sZQ15>`__ (UAI 2022
 (Under Review)). `[PDF] <https://openreview.net/forum?id=rRMlg4sZQ15>`__
 
-
-
-
-Walkthroughs
-------------
-
-.. toctree::
-   sub_pages/install
 
 
 
@@ -258,3 +254,11 @@ Submission)*. :
      url={https://openreview.net/forum?id=rRMlg4sZQ15},
      note={under review}
    }
+
+
+Contents
+------------
+
+.. toctree::
+   sub_pages/install
+
