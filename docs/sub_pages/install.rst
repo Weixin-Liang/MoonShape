@@ -1,4 +1,4 @@
-Code and Data
+Code and Data: Install
 ===============================================
 
 
@@ -39,9 +39,9 @@ Citation
 .. code-block:: bibtex
 
    @InProceedings{
-     anonymous2022ModalityGap,
+     ModalityGap2022,
      title={Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning},
-     author={Anonymous},
+     author={Weixin Liang, Yuhui Zhang, Yongchan Kwon, Serena Yeung and James Zou},
      booktitle={Under Review},
      year={2022},
      url={https://openreview.net},
