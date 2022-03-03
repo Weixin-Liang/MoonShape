@@ -2,7 +2,7 @@
 Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning
 ===============================================================================================
 
-|Website shields.io| |Documentation Status| |License| |OpenReview| |Python 3.6| |Pytorch| 
+|Website shields.io| |Documentation Status| |License| |Python 3.6| |Pytorch| 
 
 |Made withJupyter| 
 
@@ -12,8 +12,8 @@ Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Represen
    :target: http://modalitygap.readthedocs.io/?badge=latest
 .. |License| image:: https://img.shields.io/badge/License-MIT-blue.svg
    :target: https://lbesson.mit-license.org/
-.. |OpenReview| image:: https://img.shields.io/badge/OpenReview-MTex8qKavoS-green.svg
-   :target: https://openreview.net/forum?id=MTex8qKavoS
+.. .. |OpenReview| image:: https://img.shields.io/badge/OpenReview-MTex8qKavoS-green.svg
+..    :target: https://openreview.net/forum?id=MTex8qKavoS
 .. |Python 3.6| image:: https://img.shields.io/badge/python-3.6-blue.svg
    :target: https://www.python.org/downloads/release/python-360/
 .. |Pytorch| image:: https://img.shields.io/badge/Pytorch-1.8-red.svg
@@ -23,8 +23,7 @@ Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Represen
 
 Welcome! This is the project website of our paper: `Mind the Gap:
 Understanding the Modality Gap in Multi-modal Contrastive Representation
-Learning <https://openreview.net/forum?id=rRMlg4sZQ15>`__ (UAI 2022
-(Under Review)). `[PDF] <https://openreview.net/forum?id=rRMlg4sZQ15>`__
+Learning <https://openreview.net>`__ (Under Review). `[PDF] <https://openreview.net>`__
 
 
 
@@ -251,10 +250,10 @@ Submission)*. :
      anonymous2022ModalityGap,
      title={Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning},
      author={Anonymous},
-     booktitle={Submitted to The 38th Conference on Uncertainty in Artificial Intelligence},
+     booktitle={Under Review},
      year={2022},
-     url={https://openreview.net/forum?id=rRMlg4sZQ15},
-     note={under review}
+     url={https://openreview.net},
+     note={Under Review}
    }
 
 

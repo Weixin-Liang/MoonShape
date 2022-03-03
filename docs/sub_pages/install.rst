@@ -1,12 +1,16 @@
-Getting Started: Install
+Code and Data
 ===============================================
 
 
 .. raw:: html
    
    <i class="fa fa-github"></i> View on and Install via <a
-   href="https://anonymous.4open.science/r/Modality-Gap-UAI2022/">Anonymous GitHub.</a> 
+   href="https://github.com/">GitHub (coming soon).</a> 
    <br /> <br />
+
+.. <i class="fa fa-github"></i> View on and Install via <a
+.. href="https://anonymous.4open.science/r/Modality-Gap-UAI2022/">Anonymous GitHub.</a> 
+.. <br /> <br />
 
 
 
@@ -34,10 +38,12 @@ Citation
 
 .. code-block:: bibtex
 
-   @InProceedings{liang2022metashift,
-   title={MetaShift: A Dataset of Datasets for Evaluating Contextual Distribution Shifts and Training Conflicts},
-   author={Weixin Liang and James Zou},
-   booktitle={International Conference on Learning Representations},
-   year={2022},
-   url={https://openreview.net/forum?id=MTex8qKavoS}
+   @InProceedings{
+     anonymous2022ModalityGap,
+     title={Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning},
+     author={Anonymous},
+     booktitle={Under Review},
+     year={2022},
+     url={https://openreview.net},
+     note={Under Review}
    }
