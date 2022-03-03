@@ -17,7 +17,7 @@ Code and Data
 Repo Structure Overview
 -----------------------
 
-.. code:: plain
+.. code:: TextLexer
 
    .
    ├── README.md
