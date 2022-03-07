@@ -38,12 +38,15 @@ Citation
 
 .. code-block:: bibtex
 
-   @InProceedings{
+   @Article{
      ModalityGap2022,
-     title={Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning},
-     author={Weixin Liang, Yuhui Zhang, Yongchan Kwon, Serena Yeung and James Zou},
-     booktitle={Under Review},
-     year={2022},
-     url={https://openreview.net},
-     note={Under Review}
+     title     = {Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning},
+     author    = {Weixin Liang and 
+                  Yuhui Zhang and 
+                  Yongchan Kwon and 
+                  Serena Yeung and 
+                  James Zou},
+     journal   = {arXiv preprint arXiv:2203.02053},
+     url       = {https://arxiv.org/abs/2203.02053},
+     year      = {2022}
    }

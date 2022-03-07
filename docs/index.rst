@@ -2,7 +2,7 @@
 Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning
 ===============================================================================================
 
-|Website shields.io| |Documentation Status| |License| |Python 3.6| |Pytorch| 
+|Website shields.io| |Documentation Status| |License| |arXiv| |Python 3.6| |Pytorch| 
 
 |Made withJupyter| 
 
@@ -12,8 +12,8 @@ Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Represen
    :target: http://modalitygap.readthedocs.io/?badge=latest
 .. |License| image:: https://img.shields.io/badge/License-MIT-blue.svg
    :target: https://lbesson.mit-license.org/
-.. .. |OpenReview| image:: https://img.shields.io/badge/OpenReview-MTex8qKavoS-green.svg
-..    :target: https://openreview.net/forum?id=MTex8qKavoS
+.. |arXiv| image:: https://img.shields.io/badge/arXiv-2203.02053-green.svg
+   :target: https://arxiv.org/abs/2203.02053
 .. |Python 3.6| image:: https://img.shields.io/badge/python-3.6-blue.svg
    :target: https://www.python.org/downloads/release/python-360/
 .. |Pytorch| image:: https://img.shields.io/badge/Pytorch-1.8-red.svg
@@ -23,7 +23,7 @@ Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Represen
 
 Welcome! This is the project website of our paper: `Mind the Gap:
 Understanding the Modality Gap in Multi-modal Contrastive Representation
-Learning <https://openreview.net>`__ (Under Review). `[PDF] <https://openreview.net>`__
+Learning <https://arxiv.org/abs/2203.02053>`__ (Under Review). `[PDF] <https://arxiv.org/pdf/2203.02053.pdf>`__
 
 
 
@@ -246,14 +246,17 @@ Submission)*. :
 
 .. code-block:: bibtex
 
-   @InProceedings{
+   @Article{
      ModalityGap2022,
-     title={Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning},
-     author={Weixin Liang, Yuhui Zhang, Yongchan Kwon, Serena Yeung and James Zou},
-     booktitle={Under Review},
-     year={2022},
-     url={https://openreview.net},
-     note={Under Review}
+     title     = {Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning},
+     author    = {Weixin Liang and 
+                  Yuhui Zhang and 
+                  Yongchan Kwon and 
+                  Serena Yeung and 
+                  James Zou},
+     journal   = {arXiv preprint arXiv:2203.02053},
+     url       = {https://arxiv.org/abs/2203.02053},
+     year      = {2022}
    }
 
 
