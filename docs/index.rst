@@ -51,6 +51,9 @@ zero-shot classification performance and fairness.*
 **TL;DR:** We present modality gap, an intriguing geometric phenomenon
 of the representation space of multi-modal models.
 
+.. image:: https://user-images.githubusercontent.com/32794044/179121836-b3bcfa08-4679-4875-8641-08a0c48c326b.png
+    :alt: my-picture1
+
 What is `Modality Gap`?
 -------------------------
 
