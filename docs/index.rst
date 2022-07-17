@@ -156,7 +156,7 @@ Finding 1: nonlinear correlation of ML performance across data subpopulations
 
 Part 1: Out-of-distribution vs. in-distribution accuracies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. figure:: ./figures/Figure1.png
+.. figure:: ./figures/Finding1_1.png
    :width: 100 %
    :align: center
    :alt: 
@@ -179,7 +179,7 @@ where the nonlinear correlations seem more subtle, but nonlinearity is still cle
 
 Part 2: Majority vs. Minority subpopulation accuracies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. figure:: ./figures/Figure2.png
+.. figure:: ./figures/Figure1_2.png
    :width: 100 %
    :align: center
    :alt: 
