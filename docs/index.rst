@@ -179,7 +179,7 @@ where the nonlinear correlations seem more subtle, but nonlinearity is still cle
 
 Part 2: Majority vs. Minority subpopulation accuracies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. figure:: ./figures/Figure1_2.png
+.. figure:: ./figures/Finding1_2.png
    :width: 100 %
    :align: center
    :alt: 
