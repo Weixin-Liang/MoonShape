@@ -317,14 +317,14 @@ Submission)*. :
 
    @Article{
      ModalityGap2022,
-     title     = {Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning},
+     title     = {On the Nonlinear Correlation of ML Performance between Data Subpopulations},
      author    = {Weixin Liang and 
-                  Yuhui Zhang and 
+                  Yining Mao and 
                   Yongchan Kwon and 
-                  Serena Yeung and 
+                  Xinyu Yang and 
                   James Zou},
      journal   = {arXiv preprint arXiv:2203.02053},
-     url       = {https://arxiv.org/abs/2203.02053},
+     url       = {https://ai.stanford.edu/~wxliang/publications/2022-MoonShape/MoonShape_Workshop.pdf},
      year      = {2022}
    }
 
