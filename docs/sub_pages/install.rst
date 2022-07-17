@@ -43,7 +43,7 @@ Citation
 .. code-block:: bibtex
 
    @Article{
-     ModalityGap2022,
+     MoonShape2022,
      title     = {On the Nonlinear Correlation of ML Performance between Data Subpopulations},
      author    = {Weixin Liang and 
                   Yining Mao and 
