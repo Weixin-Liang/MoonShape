@@ -173,8 +173,8 @@ Within each panel, each dot corresponds to a different model trained with differ
 settings, and they are colored by their architecture. 
 The x-axes indicate in-distribution accuracy and the y-axes indicate out-of-distribution accuracy. 
 Overall, there are *striking nonlinear correlations* between the out-of-distribution accuracies and the in-distribution accuracies. 
-{Top (a-c):} three datasets with spurious correlations, where the correlations are strongly nonlinear.   
-{Bottom (d-f):} three datasets with  rare subpopulations (without obvious spurious correlations), 
+*Top (a-c):* three datasets with spurious correlations, where the correlations are strongly nonlinear.   
+*Bottom (d-f):* three datasets with  rare subpopulations (without obvious spurious correlations), 
 where the nonlinear correlations seem more subtle, but nonlinearity is still clear when decomposed in Figure 4. 
 
 Part 2: Majority vs. Minority subpopulation accuracies
@@ -193,8 +193,8 @@ Since the out-of-distribution test set of Figure 3 is composed of two subpopulat
 The x-axes indicate the majority subpopulation accuracy and the y-axes indicate the minority subpopulation accuracy. 
 **There is a striking nonlinear correlation between the majority subpopulation performance and the minority subpopulation performance.** 
 We refer to the nonlinear correlation (the parabolic uptrend curve) as *“moon shape”*. 
-{Top (a-c):} three datasets with spurious correlations, where the correlations are strongly nonlinear.   
-{Bottom (d-f):} three datasets with  rare subpopulations (without obvious spurious correlations). 
+*Top (a-c):* three datasets with spurious correlations, where the correlations are strongly nonlinear.   
+*Bottom (d-f):* three datasets with  rare subpopulations (without obvious spurious correlations). 
 **Datasets with spurious correlations (top) show more nonlinear correlations than datasets without spurious correlations (bottom).**
 
 
