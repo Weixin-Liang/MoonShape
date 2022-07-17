@@ -1,5 +1,4 @@
-
-Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning
+On the Nonlinear Correlation of ML Performance between Data Subpopulations
 ===============================================================================================
 
 |Website shields.io| |Documentation Status| |License| |arXiv| |Python 3.6| |Pytorch| 
@@ -21,9 +20,8 @@ Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Represen
 .. |Made withJupyter| image:: https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter
    :target: https://jupyter.org/try
 
-Welcome! This is the project website of our paper: `Mind the Gap:
-Understanding the Modality Gap in Multi-modal Contrastive Representation
-Learning <https://arxiv.org/abs/2203.02053>`__ (Under Review). `[PDF] <https://arxiv.org/pdf/2203.02053.pdf>`__
+Welcome! This is the project website of our paper: `On the Nonlinear Correlation of ML Performance between Data Subpopulations`
+(Under Review). 
 
 
 
@@ -31,215 +29,284 @@ Learning <https://arxiv.org/abs/2203.02053>`__ (Under Review). `[PDF] <https://a
 Abstract
 --------
 
-*We present modality gap, an intriguing geometric phenomenon of the
-representation space of multi-modal models. Specifically, we show that
-different data modalities (e.g. images and text) are embedded at arm's
-length in their shared representation in multi-modal models such as
-CLIP. Our systematic analysis demonstrates that this gap is caused by a
-combination of model initialization and contrastive learning
-optimization. In model initialization, we show empirically and
-theoretically that the representation of a common deep neural network is
-restricted to a narrow cone. As a consequence, in a multi-modal model
-with two encoders, the representations of the two modalities are clearly
-apart when the model is initialized. During optimization, contrastive
-learning keeps the different modalities separate by a certain distance,
-which is influenced by the temperature parameter in the loss function.
-Our experiments further demonstrate that varying the modality gap
-distance has a significant impact in improving the model's downstream
-zero-shot classification performance and fairness.*
+*Understanding the performance of machine learning models across diverse 
+data distributions is critically important for reliable applications. 
+Recent empirically works find that there is a strong linear relationship 
+between in-distribution (ID) and out-of-distribution (OOD) performance, 
+but we show that this is not necessarily true if there are subpopulation shifts. 
+In this paper, we empirically show that out-of-distribution performance often 
+has nonlinear correlation with in-distribution performance under 
+subpopulation shifts. To understand this phenomenon, we decompose 
+the model's performance into performance on each subpopulation. 
+We show that there is a "moon shape" correlation (parabolic uptrend curve) 
+between the test performance on the majority subpopulation and 
+the minority subpopulation. This nonlinear correlations hold across 
+model architectures, training durations and hyperparameters, 
+and the imbalance between subpopulations. Moreover, we show that
+the nonlinearity increases in the presence of spurious correlations 
+in the training data. We provide complementary theoretical and 
+experimental analyses for this interesting phenomenon of nonlinear 
+performance correlation across subpopulations. Finally, we discuss 
+the implications of our findings for ML reliability and fairness.*
 
-**TL;DR:** We present modality gap, an intriguing geometric phenomenon
-of the representation space of multi-modal models.
+**TL;DR:** We show that there is a “moon shape” correlation (parabolic uptrend curve) 
+between the test performance on the majority subpopulation and the minority subpopulation.
+This nonlinear correlations hold across model architectures, training settings, 
+datasets, and the imbalance between subpopulations.
 
-.. image:: https://user-images.githubusercontent.com/32794044/179121836-b3bcfa08-4679-4875-8641-08a0c48c326b.png
+
+
+.. image:: ./figures/moonshape-poster.png
     :alt: my-picture1
 
-What is `Modality Gap`?
+Introduction
 -------------------------
 
-As shown in Figure 1 (b), CLIP's image embeddings and text embeddings
-are located in two *completely separate* regions of the embedding space.
-We find this phenomenon consistently across various multi-modal models,
-covering texts, natural images, videos, medical images, and amino-acid
-sequences. Interestingly, this phenomenon still holds even when we embed
-using multi-modal models with random weights (Figure 1 (c)).
+Subpopulation shift is a major challenge in ML: test data often have different 
+distribution across subgroups (e.g. different types of users or patients) 
+compared to the training data.
+Recent works find a strong linear relationship between ID and OOD performance 
+on dataset reconstruction shifts; In contrast, we empirically show that 
+they have a nonlinear correlation under subpopulation shifts.
 
+Experimental setup
+-------------------------
+Preliminaries: ML with diverse subpopulations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+We consider the setting where the overall data distribution has a 
+:math:`\mathcal{D}=\{1,\ldots,D\}` diverse subpopulations. 
+Each subpopulation :math:`d\in \mathcal{D}` corresponds to a fixed data distribution :math:`P_d`. 
+In each of our main experiment, we compare the performance on two data distributions. 
+
+**(1) in-distribution (ID)**, or the training distribution,  
+:math:`P^{tr}=\sum_{d\in \mathcal{D}}r_d^{tr} P_d`, where :math:`\{r_d^{tr}\}` denotes 
+the mixture probabilities in the training set. 
+After model training, we sample additional held-out samples from the in-distribution to compute ID performance. 
+
+**(2) out-of-distribution (OOD)** is also a mixture of the :math:`\mathcal{D}` subpopulations, 
+:math:`P^{ts}=\sum_{d\in \mathcal{D}}r_d^{ts} P_d`, where :math:`\{r_d^{ts}\}` is the 
+mixture probabilities in the test set, but with a different proportion of subpopulations, 
+i.e., :math:`\{r^{ts}_d\}\neq \{r^{tr}_d\}`. 
+This setting is known as *subpopulation shifts*, and it has been well-documented in the 
+literature that ML models often perform poorly on under-represented demographics. 
+
+Subpopulation Shift Datasets
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**(1) Spurious correlation.** 
+If a target variable is correlated with another variable Z in the training distribution, 
+the model may learn to rely on Z to make predictions.
+
+.. figure:: ./figures/subpopulation1.png
+   :width: 100 %
+   :align: center
+   :alt: 
+
+   **Figure 1: Spurious correlation**
+
+
+**(2) Rare subpopulation.**
+Without obvious spurious correlation, ML models can still underperform on subpopulations that
+occur infrequently in the training set (e.g. patients with a darker skin tone, photos taken at night). 
+Since the rare subpopulation will not significantly affect model loss during training, the model may fail to learn to classify examples within this subpopulation. 
+
+.. figure:: ./figures/subpopulation2.png
+   :width: 100 %
+   :align: center
+   :alt: 
+
+   **Figure 2: Rare subpopulation**
+
+
+Experimental Procedure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+We consider :math:`\mathcal{D}=2` subpopulations, namely majority subpopulation and minority subpopulation:
+
+.. figure:: ./figures/experiment.png
+   :width: 100 %
+   :align: center
+   :alt:
+
+Procedures on each dataset:
+
+1. Train 500 ML models :math:`{f_1, f_2, …}` with different
+
+   - Model architectures
+   - Training durations
+   - Hyperparameters
+
+
+2. Evaluate the ID/OOD performance
+
+
+The Moon Shape Phenomenon
+--------------------------------------------------------------
+
+We empirically show the nonlinear correlation between 
+the out-of-distribution performance and the in-distribution performance across 
+multiple subpopulation shifts datasets. 
+To understand this phenomenon, we decompose the model's performance into performance on each subpopulation. 
+We also found *nonlinear* correlation between the test performance on the *majority subpopulation* 
+and the *minority subpopulation*. 
+Moreover, this nonlinear correlations hold across model architectures, 
+training durations and hyperparameters, and the imbalance between subpopulations. 
+
+Finding 1: nonlinear correlation of ML performance across data subpopulations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Part 1: Out-of-distribution vs. in-distribution accuracies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. figure:: ./figures/Figure1.png
    :width: 100 %
    :align: center
    :alt: 
 
-   **Figure 1: The pervasive modality gap in multi-modal contrastive
-   representation learning**
+   **Figure 3: Out-of-distribution accuracies vs. in-distribution accuracies under subpopulation shifts**
 
-How do we explain `Modality Gap`? A three-part explanationn.
---------------------------------------------------------------
 
-While it might seem reasonable to attribute the gap to differences in
-data distributions or to the different encoder architectures, we showed
-that these factors are *not* the fundamental cause of the modality gap
-phenomenon. This paper provides a *three-part explanation* for the
-modality gap phenomenon.
+With the aforementioned subpopulation shifts datasets, Figure 3 shows how the out-of-distribution 
+accuracies correlate with the in-distribution accuracies under subpopulation shifts. 
+Each panel represents a dataset. 
+On each dataset, we trained 500 different models independently, with different model architectures and hyperparameters. 
+The training distribution, or in-distribution, contains a majority subpopulation 
+(over-represented in training data (e.g., :math:`90\%`)), and a 
+minority subpopulation (under-represented in training data (e.g., :math:`10\%`)). 
+In the out-of-distribution, the majority subpopulation and minority subpopulation are equally represented. 
+Within each panel, each dot corresponds to a different model trained with different hyperparameter 
+settings, and they are colored by their architecture. 
+The x-axes indicate in-distribution accuracy and the y-axes indicate out-of-distribution accuracy. 
+Overall, there are *striking nonlinear correlations* between the out-of-distribution accuracies and the in-distribution accuracies. 
+{Top (a-c):} three datasets with spurious correlations, where the correlations are strongly nonlinear.   
+{Bottom (d-f):} three datasets with  rare subpopulations (without obvious spurious correlations), where the nonlinear correlations seem more subtle, but nonlinearity is still clear when decomposed in Figure~\ref{fig:figure2}. 
 
-1. The general inductive bias of deep neural architecture creates a cone
-   effect: The effective embedding space is restricted to a narrow cone
-   for pre-trained models or models with random weights.
-
-2. Different random initializations create different embedding cones.
-   Since a multi-modal model consists of two encoders, which create
-   different cones at random initialization, this explains how the
-   modality gap is present at initialization.
-
-3. The contrastive learning objective commonly used by multi-modal
-   models preserves the gap.
-
-Part 1: The `Cone Effect` Induces A Modality Gap
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. figure:: ./figures/Figure2ab.png
+Part 2: Majority vs. Minority subpopulation accuracies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. figure:: ./figures/Figure2.png
    :width: 100 %
    :align: center
    :alt: 
 
-   **Figure 2 (a,b): The Cone Effect Induces A Modality Gap.**
+   **Figure 4: Majority subpopulation accuracies vs. minority subpopulation accuracies**
 
-The cosine similarity between all pairs of embeddings (last-layer feature)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We extract 5,000 embeddings from the final layer of ResNet, Vision
-Transformer, and Text Transformer respectively on MSCOCO Caption. We
-then compute the cosine similarity be- tween all possible pairs of the
-5,000 embeddings within each model.
+We decompose the model's performance into performance on each subpopulation. 
+Since the out-of-distribution test set of Figure 3 is composed of two subpopulations 
+(i.e., majority subpopulation, minority subpopulation), we evaluate the trained models on each subpopulation separately. 
+The x-axes indicate the majority subpopulation accuracy and the y-axes indicate the minority subpopulation accuracy. 
+**There is a striking nonlinear correlation between the majority subpopulation performance and the minority subpopulation performance.** 
+We refer to the nonlinear correlation (the parabolic uptrend curve) as *“moon shape”*. 
+{Top (a-c):} three datasets with spurious correlations, where the correlations are strongly nonlinear.   
+{Bottom (d-f):} three datasets with  rare subpopulations (without obvious spurious correlations). 
+**Datasets with spurious correlations (top) show \emph{more nonlinear} correlations than datasets without spurious correlations (bottom).**
 
-The average cosine similarity is substantially larger than 0, indicating
-that the embedding space is a narrow cone. The cone effect also holds on
-randomly initialized models, and on random noise inputs.
 
-Effects of nonlinear activation and depth.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-As shown in Figure 2 (b), MLPs without non- linear activation shows
-little cone effect. However, with non-linearity, the average cosine
-similarity increases rapidly as the number of layers increases. These
-results indicate that the non-linear activation functions play a crucial
-role in the cone effect.
-
-Part 2: Different random initializations create different cones
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. figure:: ./figures/Figure2c.png
-   :width: 100 %
-   :align: center
-   :alt: 
-
-   **Figure 2 (c): Different random initializations create different
-   cones.**
-
-We randomly initialized a model 25 times, and plotted its extracted
-embeddings on the same real data via UMAP visualization. We found that
-each random initialization forms a distinctively different cone. Since a
-multi-modal model consists of two encoders, which creates different
-cones at random ini- tialization, this explains how the modality gap is
-present at initialization.
-
-Theoretical Analysis
-~~~~~~~~~~~~~~~~~~~~~
+Part 3: Discussion
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _part-1-the-cone-effect-induces-a-modality-gap-1:
 
-Part 1: The `Cone Effect` Induces A Modality Gap
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: ./figures/Theorem1.png
+**Discussion 1: Why the moon shape is not obvious** 
+
+Figure 5 demonstrates one reason why the non-linear 
+correlation structure (i.e., the moon shape) is non-trivial. 
+Consider a thought experiment in which we interpolate two models :math:`A`, :math:`B` 
+(indicated by red circles) picked from the moon shape curve by flipping a biased coin with probability :math:`B`:
+If the coin lands head up, classify with model :math:`A`. Otherwise classify with model :math:`B`. 
+Varying :math:`p` in :math:`[0, 1]` gives a line between model :math:`A` and model :math:`B`. 
+This thought experiment demonstrates that the interpolation line is an achievable region for the ML models, 
+but the models deviate substantially away from this interpolation line, forming a moon shape. 
+
+.. figure:: ./figures/Discussion1.png
    :width: 50 %
    :align: center
    :alt: 
 
-   **Theorem 1:** Our theoretical analysis shows that under mild
-   assumptions, each neural network layer shrinks the angle between any
-   pair of embedding vectors with high probability, thereby creating more
-   narrow cones in deeper architectures. Here :math:`\phi` is the ReLU
-   activation function.
+   **Figure 5: Model interpolation shows why moon-shape is non-trivial**
+
 
 .. _part-2-different-random-initializations-create-different-cones-1:
 
-Part 2: Different random initializations create different cones
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: ./figures/Theorem_variance.png
-   :width: 50 %
-   :align: center
-   :alt: 
 
-.. figure:: ./figures/Theorem2.png
-   :width: 50 %
-   :align: center
-   :alt: 
+**Discussion 2: The moon shape persists within and across different training epochs** 
 
-   **Theorem 2:** We further prove that different random initializations of
-   model weights result in different cones. More specifically, the variance
-   of an intermediate output mostly come from the model's random
-   initialization.
+We stratify Figure based on the number of training epochs. 
+The x-axis indicates majority subpopulation performance. 
+The y-axis indicates minority subpopulation performance. 
+Most of the models have converged after 10 epochs. 
+The moon shape is apparent in each snapshot and persists across training epochs.
 
-Part 3: `Contrastive learning` preserves modality gap
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. figure:: ./figures/Figure3.jpg
+.. figure:: ./figures/Discussion2.png
    :width: 100 %
    :align: center
    :alt: 
 
-   **Figure 3: Contrastive learning preserves modality gap.**
+   **Figure 6: The moon shape persists within and across different training epochs**
 
-We hypothesize that the contrastive learning objective encourages the
-existence of the modality gap. To testify this hypothesis, we manually
-shift CLIP's image embeddings and text embeddings towards closing the
-gap.
 
-We found that under CLIP's default temperature
-:math:`\tau=\frac{1}{100}`, the default gap distance
-:math:`\| \vec{\Delta}_\text{gap} \|=0.82` actually achieves the global
-minimum, and shifting toward closing the gap *increases* the contrastive
-loss.
+Finding 2: spurious correlation makes the moon shape more nonlinear
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-However, when the temperature increases (Figure 3 (c,d)), the repulsive
-structure and the local minimum gradually disappear, and closing the gap
-becomes more optimal.
-
-Together, these results show that contrastive learning keeps the
-different modalities separate by a certain distance, which is influenced
-by the temperature parameter in the loss function.
-
-Modality Gap Implications
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Interestingly, by simply modifying the modality gap's distance, we can
-improve CLIP's zero-shot performance (Table 1) and fairness (Table 2).
-
-.. figure:: ./figures/Tables.png
+.. figure:: ./figures/Finding2.png
    :width: 100 %
    :align: center
    :alt: 
 
-   **Modality Gap Implications: Experiment Results**
+   **Figure 7: spurious correlation makes the moon shape more nonlinear**
 
-Table 1: Zero-shot Performance
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Setup (left):** Dataset settings of Modified-CIFAR4 V1. 
+Here :math:`Y` is the class label. :math:`Z=1` indicates the majority subpopulation 
+while :math:`Z=0` indicates the minority subpopulation. 
+We fixed the ratio of majority subpopulation (:math:`60\%` in training) and 
+minority subpopulation (:math:`40\%` in training) while changing the level 
+of the spurious correlation between the classification target label 
+(air/land) and spurious feature (vehicle/animal). 
 
-One of the most interesting capabilities for CLIP is its strong
-zero-shot transferability to a variety of downstream tasks without any
-supervision. We found that modifying the modality gap can improve
-zeroshot performances on multiple downstream tasks.
+**Results (right):** Experimental results on four different training sets. 
+Each panel represents an experiment with a different training set, 
+where the :math:`2 \times 2` table displayed on the upper left corner indicates 
+the training set construction procedure. 
 
-Table 2: Fairness
-^^^^^^^^^^^^^^^^^
+As indicated by the blue arrow from left to right, the performance correlations 
+become more nonlinear when there is a stronger spurious correlation in the 
+training data.
 
-We found that increasing the gap from :math:`0.82` to :math:`0.97`
-*reduces* denigration harms consistently for *all* races. Meanwhile, we
-only observe a minor :math:`0.0008` top-1 accuracy drop. It is
-encouraging that a simple gap offsetting approach can lead to a
-consistent bias reduction across all races on such a complex model
-(i.e., CLIP).
+
+Theoretical Analysis
+--------------------------------------------------------------
+.. figure:: ./figures/Theorem.png
+   :width: 100 %
+   :align: center
+   :alt: 
+
+
+Theorem 1 shows that the subpopulation accuracy gap is expressed as a 
+function of :math:`|\pi_1 -\pi_0|` and :math:`\left| \mathrm{TPR} - \mathrm{TNR} \right|`. 
+A direct consequence is that the accuracy gap gets larger when the level of 
+spurious correlation :math:`|\pi_1 -\pi_0|` increases. It is possible to keep 
+:math:`\mathbb{P}(Z=1)` and :math:`\mathbb{P}(Y=1)` as constants while the 
+spurious correlation :math:`|\pi_1 -\pi_0|` changes. In particular, it occurs 
+when :math:`\pi_1` and :math:`\pi_0` are related as 
+:math:`\pi_1= (\mathbb{P}(Z=1)-\mathbb{P}(Y=0)\pi_0)/\mathbb{P}(Y=1)`, 
+which captures the setting of . 
+In the experimental result, the accuracy gap increases once :math:`|\pi_1 -\pi_0|` increases in general, 
+which is supported by our theoretical result.
+
+Discussion
+--------------------------------------------------------------
+
+Implications for model selection: with spurious correlation, 
+models with higher aggregated performance may perform worse on 
+minority subpopulation before the phase transition point. 
+This should be considered in settings where subpopulations 
+performance is important (e.g. fairness considerations).
+
+
+
+**Future work:** further analysis and understanding on this nonlinear pattern under subpopulation shifts.
+
+
 
 Citation
 --------
