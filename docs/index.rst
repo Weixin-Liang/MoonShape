@@ -164,9 +164,6 @@ Part 1: Out-of-distribution vs. in-distribution accuracies
    **Figure 3: Out-of-distribution accuracies vs. in-distribution accuracies under subpopulation shifts**
 
 
-With the aforementioned subpopulation shifts datasets, Figure 3 shows how the out-of-distribution 
-accuracies correlate with the in-distribution accuracies under subpopulation shifts. 
-Each panel represents a dataset. 
 On each dataset, we trained 500 different models independently, with different model architectures and hyperparameters. 
 The training distribution, or in-distribution, contains a majority subpopulation 
 (over-represented in training data (e.g., :math:`90\%`)), and a 
@@ -177,7 +174,8 @@ settings, and they are colored by their architecture.
 The x-axes indicate in-distribution accuracy and the y-axes indicate out-of-distribution accuracy. 
 Overall, there are *striking nonlinear correlations* between the out-of-distribution accuracies and the in-distribution accuracies. 
 {Top (a-c):} three datasets with spurious correlations, where the correlations are strongly nonlinear.   
-{Bottom (d-f):} three datasets with  rare subpopulations (without obvious spurious correlations), where the nonlinear correlations seem more subtle, but nonlinearity is still clear when decomposed in Figure~\ref{fig:figure2}. 
+{Bottom (d-f):} three datasets with  rare subpopulations (without obvious spurious correlations), 
+where the nonlinear correlations seem more subtle, but nonlinearity is still clear when decomposed in Figure 4. 
 
 Part 2: Majority vs. Minority subpopulation accuracies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -197,7 +195,7 @@ The x-axes indicate the majority subpopulation accuracy and the y-axes indicate 
 We refer to the nonlinear correlation (the parabolic uptrend curve) as *“moon shape”*. 
 {Top (a-c):} three datasets with spurious correlations, where the correlations are strongly nonlinear.   
 {Bottom (d-f):} three datasets with  rare subpopulations (without obvious spurious correlations). 
-**Datasets with spurious correlations (top) show \emph{more nonlinear} correlations than datasets without spurious correlations (bottom).**
+**Datasets with spurious correlations (top) show more nonlinear correlations than datasets without spurious correlations (bottom).**
 
 
 Part 3: Discussion
@@ -231,7 +229,7 @@ but the models deviate substantially away from this interpolation line, forming 
 
 **Discussion 2: The moon shape persists within and across different training epochs** 
 
-We stratify Figure based on the number of training epochs. 
+We stratify Figure 6 based on the number of training epochs. 
 The x-axis indicates majority subpopulation performance. 
 The y-axis indicates minority subpopulation performance. 
 Most of the models have converged after 10 epochs. 
@@ -302,10 +300,11 @@ minority subpopulation before the phase transition point.
 This should be considered in settings where subpopulations 
 performance is important (e.g. fairness considerations).
 
-
-
-**Future work:** further analysis and understanding on this nonlinear pattern under subpopulation shifts.
-
+More generally, subpopulation shift is ubiquitous in ML applications. 
+Our work highlight how model improvement in one subpopulation may have 
+nonlinear effects on performance in other subpopulations. 
+Further analysis and understanding of this nonlinear pattern is an 
+important direction of future work. 
 
 
 Citation
