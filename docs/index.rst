@@ -332,6 +332,6 @@ Submission)*. :
 Contents
 ------------
 
-toctree::
+.. toctree::
    sub_pages/install
 
