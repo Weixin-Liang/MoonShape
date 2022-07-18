@@ -329,9 +329,9 @@ Submission)*. :
    }
 
 
-.. Contents
-.. ------------
+Contents
+------------
 
-.. .. toctree::
-..    sub_pages/install
+toctree::
+   sub_pages/install
 
