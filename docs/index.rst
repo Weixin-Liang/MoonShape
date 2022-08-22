@@ -334,5 +334,4 @@ Contents
 
 .. toctree::
    sub_pages/install
-   sub_pages/matching_to_imagenet
 
