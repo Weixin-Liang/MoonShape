@@ -21,7 +21,7 @@ On the Nonlinear Correlation of ML Performance between Data Subpopulations
    :target: https://jupyter.org/try
 
 Welcome! This is the project website of our paper: `On the Nonlinear Correlation of ML Performance between Data Subpopulations`
-(Under Review). 
+(ICML 2023). 
 
 
 
@@ -310,22 +310,17 @@ important direction of future work.
 Citation
 --------
 
-If you use this repo in your research, please cite it as follows *(Under
-Submission)*. :
+If you use this repo in your research, please cite it as follows *(ICML 2023)*. :
 
 .. code-block:: bibtex
 
-   @Article{
-     MoonShape2022,
-     title     = {On the Nonlinear Correlation of ML Performance between Data Subpopulations},
-     author    = {Weixin Liang and 
-                  Yining Mao and 
-                  Yongchan Kwon and 
-                  Xinyu Yang and 
-                  James Zou},
-     journal   = {arXiv preprint arXiv:2203.02053},
-     url       = {https://ai.stanford.edu/~wxliang/publications/2022-MoonShape/MoonShape_Workshop.pdf},
-     year      = {2022}
+   @misc{liang2023accuracy,
+         title={Accuracy on the Curve: On the Nonlinear Correlation of ML Performance Between Data Subpopulations}, 
+         author={Weixin Liang and Yining Mao and Yongchan Kwon and Xinyu Yang and James Zou},
+         year={2023},
+         eprint={2305.02995},
+         archivePrefix={arXiv},
+         primaryClass={cs.LG}
    }
 
 
