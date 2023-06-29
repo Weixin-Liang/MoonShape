@@ -6,9 +6,9 @@ On the Nonlinear Correlation of ML Performance between Data Subpopulations
 |Made withJupyter| 
 
 .. |Website shields.io| image:: https://img.shields.io/website-up-down-green-red/http/shields.io.svg
-   :target: https://modalitygap.readthedocs.io/
-.. |Documentation Status| image:: https://readthedocs.org/projects/modalitygap/badge/?version=latest
-   :target: http://modalitygap.readthedocs.io/?badge=latest
+   :target: https://moonshape.readthedocs.io/
+.. |Documentation Status| image:: https://readthedocs.org/projects/moonshape/badge/?version=latest
+   :target: http://moonshape.readthedocs.io/?badge=latest
 .. |License| image:: https://img.shields.io/badge/License-MIT-blue.svg
    :target: https://lbesson.mit-license.org/
 .. |arXiv| image:: https://img.shields.io/badge/arXiv-2203.02053-green.svg
